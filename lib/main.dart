@@ -15,31 +15,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Home',
       theme: ThemeData(
-        fontFamily: GoogleFonts.lato().fontFamily,
-        scaffoldBackgroundColor: util.mainColor,
-        textTheme: TextTheme(
-          bodyText1: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Colors.white
-          ),
-          bodyText2: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-            color: Colors.white
-          ),
-            subtitle1: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
-          ),
-            subtitle2: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: Colors.white
-          )
-        )
-      ),
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          scaffoldBackgroundColor: util.mainColor,
+          textTheme: TextTheme(
+              bodyText1: TextStyle(
+                letterSpacing: 2,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+              bodyText2: TextStyle(
+                 letterSpacing: 1,
+                  fontSize: 18,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white),
+              subtitle1: TextStyle(
+                  letterSpacing: 2,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              subtitle2: TextStyle(
+                 letterSpacing: 2,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white))),
       home: WelcomePage(),
     );
   }
