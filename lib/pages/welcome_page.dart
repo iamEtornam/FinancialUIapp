@@ -1,3 +1,5 @@
+import 'package:financial_app/shared_widgets/custom_button_outline_widget.dart';
+import 'package:financial_app/shared_widgets/custom_button_widget.dart';
 import 'package:financial_app/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -27,7 +29,7 @@ class WelcomePage extends StatelessWidget {
               'seamless & intuitively',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            SizedBox(height: 25),
+            SizedBox(height: MediaQuery.of(context).size.height/12),
             CustomButtomWidget(
               util: util,
               color: util.mainColor,
@@ -36,54 +38,31 @@ class WelcomePage extends StatelessWidget {
               onTap: () {},
               icon: AntDesign.google,
             ),
+            SizedBox(height: 15),
+            CustomButtonOutlineWidget(
+              util: util,
+              color: util.mainColor,
+              borderColor: Colors.white,
+              text: 'Create an account',
+              onTap: () {},
+            ),
+            SizedBox(height: 25),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                    text: 'Already have an account? ',
+                    style: TextStyle(color: Colors.white54),
+                    children: [
+                      TextSpan(
+                          text: 'Sign in',
+                          style: TextStyle(color: Colors.white))
+                    ]),
+              ),
+            ),
+            SizedBox(height: 15),
           ],
         ),
       ),
     );
-  }
-}
-
-class CustomButtomWidget extends StatelessWidget {
-  const CustomButtomWidget({
-    Key key,
-    @required this.util,
-    @required this.text,
-    @required this.isHasIcon,
-    this.icon,
-    @required this.color,
-    @required this.onTap,
-  }) : super(key: key);
-
-  final Util util;
-  final String text;
-  final bool isHasIcon;
-  final IconData icon;
-
-  ///added color and ontap function and reference them in button code
-  final Color color;
-  final Function onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return FlatButton(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(45)),
-        onPressed: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: <Widget>[
-              isHasIcon ? Icon(icon, color: color) : SizedBox(),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 7,
-              ),
-              Text(text,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: util.mainColor))
-            ],
-          ),
-        ));
   }
 }
