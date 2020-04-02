@@ -2,6 +2,7 @@ import 'package:financial_app/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'pages/create_account_page.dart';
 import 'pages/welcome_page.dart';
 
 void main() {
@@ -17,6 +18,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: GoogleFonts.roboto().fontFamily,
           scaffoldBackgroundColor: util.mainColor,
+          appBarTheme: AppBarTheme(
+            color: util.mainColor,
+            elevation: 0
+          ),
           textTheme: TextTheme(
               bodyText1: TextStyle(
                 letterSpacing: 2,
@@ -38,7 +43,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.white))),
-      home: WelcomePage(),
+      home: CreateAccountPage(),
     );
   }
 }
