@@ -1,3 +1,4 @@
+import 'package:financial_app/pages/create_account_page.dart';
 import 'package:financial_app/shared_widgets/custom_button_outline_widget.dart';
 import 'package:financial_app/shared_widgets/custom_button_widget.dart';
 import 'package:financial_app/utils/util.dart';
@@ -29,11 +30,11 @@ class WelcomePage extends StatelessWidget {
               'seamless & intuitively',
               style: Theme.of(context).textTheme.bodyText1,
             ),
-            SizedBox(height: MediaQuery.of(context).size.height/12),
+            SizedBox(height: MediaQuery.of(context).size.height / 12),
             CustomButtomWidget(
-              util: util,
-              color: util.mainColor,
+              textColor: util.mainColor,
               isHasIcon: true,
+              backgroundColor: Colors.white,
               text: 'Sign in with Google',
               onTap: () {},
               icon: AntDesign.google,
@@ -44,9 +45,14 @@ class WelcomePage extends StatelessWidget {
               color: util.mainColor,
               borderColor: Colors.white,
               text: 'Create an account',
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateAccountPage()));
+              },
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 35),
             Center(
               child: RichText(
                 text: TextSpan(
