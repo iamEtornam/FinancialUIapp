@@ -121,7 +121,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                         .caption
                                         .copyWith(
                                             fontSize: 16,
-                                            fontWeight: FontWeight.w600),
+                                            fontWeight: FontWeight.w400),
                                     children: [
                                   TextSpan(
                                       text: '\nTerms & Conditions',
@@ -140,22 +140,23 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             text: 'Sign up',
                             isHasIcon: false,
                             textColor: Colors.white,
-                            backgroundColor: isTermsAccepted ? util.mainColor : util.mainColor.withOpacity(.3),
+                            backgroundColor: isTermsAccepted
+                                ? util.mainColor
+                                : util.mainColor.withOpacity(.3),
                             onTap: () {}),
-                            SizedBox(height:30),
-                            Center(
-                              child: RichText(
-                                textAlign: TextAlign.justify,
-                                  text: TextSpan(
-                                      text:
-                                          'Already have an account? ',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .caption
-                                          .copyWith(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600),
-                                      children: [
+                        SizedBox(height: 30),
+                        Center(
+                          child: RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                  text: 'Already have an account? ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                  children: [
                                     TextSpan(
                                         text: 'Sign in',
                                         style: Theme.of(context)
@@ -166,7 +167,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w600))
                                   ])),
-                            )
+                        )
                       ],
                     ))
               ],
