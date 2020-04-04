@@ -1,12 +1,19 @@
 import 'package:financial_app/shared_widgets/custom_button_widget.dart';
+import 'package:financial_app/shared_widgets/custom_textfield_widget.dart';
 import 'package:financial_app/utils/util.dart';
 import 'package:flutter/material.dart';
 
-class CreateAccountPage extends StatelessWidget {
+class CreateAccountPage extends StatefulWidget {
+  @override
+  _CreateAccountPageState createState() => _CreateAccountPageState();
+}
+
+class _CreateAccountPageState extends State<CreateAccountPage> {
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailReg = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  final util  = Util();
+  final util = Util();
+  bool isTermsAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -92,27 +99,74 @@ class CreateAccountPage extends StatelessWidget {
                               return null;
                             },
                             isObscure: false),
-                            SizedBox(height:30),
-                            Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              runAlignment: WrapAlignment.center,
-                              children: <Widget>[
-                              Checkbox(value: true, onChanged: (bool isChecked){
-
-                              }),
-                              RichText(text: TextSpan(
-                                text: 'By creating an account, you agree to our ',
-                                style: Theme.of(context).textTheme.caption.copyWith(fontSize: 16,fontWeight: FontWeight.w600),
-                                children: [
+                        SizedBox(height: 30),
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          runAlignment: WrapAlignment.center,
+                          children: <Widget>[
+                            Checkbox(
+                                activeColor: util.mainColor,
+                                value: isTermsAccepted,
+                                onChanged: (bool isChecked) {
+                                  setState(() {
+                                    isTermsAccepted = !isTermsAccepted;
+                                  });
+                                }),
+                            RichText(
+                                text: TextSpan(
+                                    text:
+                                        'By creating an account, you agree to our ',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        .copyWith(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600),
+                                    children: [
                                   TextSpan(
-                                    text: '\nTerms & Conditions',
-                                    style: Theme.of(context).textTheme.caption.copyWith(color:util.mainColor,fontSize: 16,fontWeight: FontWeight.w600)
-                                  )
-                                ]
-                              ))
-                            ],),
+                                      text: '\nTerms & Conditions',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          .copyWith(
+                                              color: util.mainColor,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600))
+                                ]))
+                          ],
+                        ),
+                        SizedBox(height: 30),
+                        CustomButtomWidget(
+                            text: 'Sign up',
+                            isHasIcon: false,
+                            textColor: Colors.white,
+                            backgroundColor: isTermsAccepted ? util.mainColor : util.mainColor.withOpacity(.3),
+                            onTap: () {}),
                             SizedBox(height:30),
-                            CustomButtomWidget(text: 'Sign up', isHasIcon: false, textColor: Colors.white, backgroundColor: util.mainColor, onTap: (){})
+                            Center(
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                  text: TextSpan(
+                                      text:
+                                          'Already have an account? ',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .caption
+                                          .copyWith(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600),
+                                      children: [
+                                    TextSpan(
+                                        text: 'Sign in',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .caption
+                                            .copyWith(
+                                                color: util.mainColor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600))
+                                  ])),
+                            )
                       ],
                     ))
               ],
@@ -120,83 +174,6 @@ class CreateAccountPage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CustomTextFieldWidget extends StatelessWidget {
-  const CustomTextFieldWidget({
-    Key key,
-    @required this.textEditingController,
-    @required this.label,
-    @required this.inputType,
-    @required this.onFieldSubmitted,
-    @required this.onValidate,
-    @required this.isObscure,
-    @required this.description,
-  }) : super(key: key);
-
-  final TextEditingController textEditingController;
-  final String label;
-  final TextInputType inputType;
-  final Function onFieldSubmitted;
-  final Function onValidate;
-  final bool isObscure;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          description,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText2
-              .copyWith(color: Color.fromRGBO(220, 223, 227, 1)),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        TextFormField(
-          controller: textEditingController,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              .copyWith(color: Colors.black),
-          obscureText: isObscure,
-          maxLines: 1,
-          enabled: true,
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.text,
-          decoration: InputDecoration(
-              labelText: label,
-              labelStyle: Theme.of(context)
-                  .textTheme
-                  .caption
-                  .copyWith(fontSize: 16, fontWeight: FontWeight.w500,color: Color.fromRGBO(208,212,219,1)),
-              alignLabelWithHint: true,
-              fillColor: Color.fromRGBO(243, 246, 250, 1),
-              filled: true,
-              errorStyle: Theme.of(context)
-                  .textTheme
-                  .caption
-                  .copyWith(color: Colors.red),
-              errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(45),
-                  borderSide: BorderSide(color: Colors.red)),
-              contentPadding: const EdgeInsets.all(15),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(45),
-                  borderSide: BorderSide.none),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(45),
-                  borderSide: BorderSide.none)),
-          onFieldSubmitted: onFieldSubmitted,
-          validator: onValidate,
-        ),
-      ],
     );
   }
 }
