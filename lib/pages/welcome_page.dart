@@ -1,4 +1,5 @@
 import 'package:financial_app/pages/create_account_page.dart';
+import 'package:financial_app/pages/login_page.dart';
 import 'package:financial_app/shared_widgets/custom_button_outline_widget.dart';
 import 'package:financial_app/shared_widgets/custom_button_widget.dart';
 import 'package:financial_app/utils/util.dart';
@@ -54,15 +55,21 @@ class WelcomePage extends StatelessWidget {
             ),
             SizedBox(height: 35),
             Center(
-              child: RichText(
-                text: TextSpan(
-                    text: 'Already have an account? ',
-                    style: TextStyle(color: Colors.white54),
-                    children: [
-                      TextSpan(
-                          text: 'Sign in',
-                          style: TextStyle(color: Colors.white))
-                    ]),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Already have an account? ',
+                      style: TextStyle(color: Colors.white54),
+                      children: [
+                        TextSpan(
+                            text: 'Sign in',
+                            style: TextStyle(color: Colors.white))
+                      ]),
+                ),
               ),
             ),
             SizedBox(height: 15),
